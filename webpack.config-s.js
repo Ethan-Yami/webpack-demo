@@ -1,6 +1,6 @@
 var path = require('path');
 var htmlWebpackPlugin = require('html-webpack-plugin');
-var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+
 module.exports = {
 	mode: 'development',
 	entry: {
@@ -16,27 +16,26 @@ module.exports = {
 		publicPath:'https://upjg.org'
 	},
 	plugins:[
-		
 		new htmlWebpackPlugin({
 			filename:"index.html",
 			template:"index.html",
-			inject:true,			
+			inject:'body',			
 			minify:{
 				removeComments:true,
 				removeEmptyElements:true,
-				removeTagWhitespace:true,
-				collapseWhitespace:true,
-			},			
+				/*removeTagWhitespace:true,
+				collapseWhitespace:true,*/
+			},
+			
 			title:'webpack is pretty good',
 			date:new Date(),
-			chunks:['main'],
-			inlineSource: '.(js|css)$'
-
+			chunks:['main','a']
 		}),
 		new htmlWebpackPlugin({
 			filename:"login.html",
 			template:'login.html',
-			inject:'body',			
+			inject:'body',
+			
 			minify:{
 				removeComments:true,
 				removeEmptyElements:true,
@@ -55,8 +54,7 @@ module.exports = {
 				/*removeTagWhitespace:true,
 				collapseWhitespace:true,*/
 			},
-			chunks:['a'],
-			inlineSource: '.(js|css)$'
+			chunks:['a']
 
 		}),
 
@@ -70,8 +68,7 @@ module.exports = {
 				/*removeTagWhitespace:true,
 				collapseWhitespace:true,*/
 			},
-			chunks:['b'],
-			inlineSource: '.(js|css)$'
+			chunks:['b']
 
 
 		}),
@@ -86,12 +83,10 @@ module.exports = {
 				/*removeTagWhitespace:true,
 				collapseWhitespace:true,*/
 			},
-			chunks:['c'],
-			inlineSource: '.(js|css)$'			
+			chunks:['c']
 
 
-		}),
-		new HtmlWebpackInlineSourcePlugin(),
+		})
 	]
 
 }
