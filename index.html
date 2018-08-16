@@ -1,8 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Webpack is awesome</title>
+	<title><%=  htmlWebpackPlugin.options.title %></title>
+	<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </head>
 <body>
+	<%= htmlWebpackPlugin.options.date %>
+
+	
+	<% for(var key in htmlWebpackPlugin){ %>
+
+		<%= key %>
+
+	<% } %>
+
+	<% for(var key2 in htmlWebpackPlugin.files){%>
+
+		<%= key2 %> <%= JSON.stringify(htmlWebpackPlugin.files[key2]) %>
+
+	<% } %>
+
+	<hr>
+
+	<% for(var key2 in htmlWebpackPlugin.options){%>
+
+		<%= key2 %> <%= JSON.stringify(htmlWebpackPlugin.options[key2]) %>
+
+	<% } %>
+
+		
+
 </body>
 </html>

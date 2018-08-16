@@ -16,8 +16,10 @@ module.exports = {
 		new htmlWebpackPlugin({
 			filename:"index-[hash].html",
 			template:"index.html",
-			inject:'head',
-			title:'webpack is pretty good'
+			minify:true,
+			inject:true,
+			title:'webpack is pretty good',
+			date:new Date()
 		})
 	]
 
