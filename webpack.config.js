@@ -9,12 +9,15 @@ module.exports = {
 	},
 	output: {
 
-		path: __dirname +"/dist/js",
-		filename: "[name]-[chunkhash].js"
+		path: __dirname +"/dist/",
+		filename: "js/[name]-[chunkhash].js"
 	},
 	plugins:[
 		new htmlWebpackPlugin({
-			template:"index.html"
+			filename:"index-[hash].html",
+			template:"index.html",
+			inject:'head',
+			title:'webpack is pretty good'
 		})
 	]
 
