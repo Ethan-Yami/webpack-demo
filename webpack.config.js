@@ -10,13 +10,19 @@ module.exports = {
 	output: {
 
 		path: __dirname +"/dist/",
-		filename: "js/[name]-[chunkhash].js"
+		filename: "js/[name]-[chunkhash].js",
+		publicPath:'https://upjg.org'
 	},
 	plugins:[
 		new htmlWebpackPlugin({
 			filename:"index-[hash].html",
 			template:"index.html",
-			minify:true,
+			minify:{
+				removeComments:true,
+				removeEmptyElements:true,
+				removeTagWhitespace:true,
+				collapseWhitespace:true,
+			},
 			inject:true,
 			title:'webpack is pretty good',
 			date:new Date()
