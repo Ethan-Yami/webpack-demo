@@ -3,25 +3,38 @@ var htmlWebpackPlugin = require('html-webpack-plugin');
 var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 module.exports = {
 	mode: 'development',
-	entry: {
+	/*entry: {
 		main: './src/script/main.js',
 		a: './src/script/a.js',
 		b: './src/script/b.js',
 		c: './src/script/c.js'
-	},
+	},*/
+	entry:"./src/app.js",
 	output: {
 
 		path: __dirname +"/dist/",
-		filename: "js/[name]-[chunkhash].js",
-		publicPath:'https://upjg.org'
+		filename: "js/[name]-[bundle].js",
+		/*publicPath:'https://upjg.org'*/
+	},
+	module:{
+		loaders:[
+			{
+				test: /\.js$/,
+				loader:'babel',
+				query:{
+					presets:['lastest']
+				}
+			}
+		]
+
 	},
 	plugins:[
 		
 		new htmlWebpackPlugin({
 			filename:"index.html",
 			template:"index.html",
-			inject:true,			
-			minify:{
+			inject:'body',			
+			/*minify:{
 				removeComments:true,
 				removeEmptyElements:true,
 				removeTagWhitespace:true,
@@ -30,18 +43,18 @@ module.exports = {
 			title:'webpack is pretty good',
 			date:new Date(),
 			chunks:['main'],
-			inlineSource: '.(js|css)$'
+			inlineSource: '.(js|css)$'*/
 
 		}),
-		new htmlWebpackPlugin({
+		/*new htmlWebpackPlugin({
 			filename:"login.html",
 			template:'login.html',
 			inject:'body',			
 			minify:{
 				removeComments:true,
 				removeEmptyElements:true,
-			/*	removeTagWhitespace:true,
-				collapseWhitespace:true,*/
+				removeTagWhitespace:true,
+				collapseWhitespace:true,
 			},
 			chunks:['main']
 		}),
@@ -52,8 +65,8 @@ module.exports = {
 			minify:{
 				removeComments:true,
 				removeEmptyElements:true,
-				/*removeTagWhitespace:true,
-				collapseWhitespace:true,*/
+				removeTagWhitespace:true,
+				collapseWhitespace:true,
 			},
 			chunks:['a'],
 			inlineSource: '.(js|css)$'
@@ -67,8 +80,8 @@ module.exports = {
 			minify:{
 				removeComments:true,
 				removeEmptyElements:true,
-				/*removeTagWhitespace:true,
-				collapseWhitespace:true,*/
+				removeTagWhitespace:true,
+				collapseWhitespace:true,
 			},
 			chunks:['b'],
 			inlineSource: '.(js|css)$'
@@ -83,14 +96,14 @@ module.exports = {
 			minify:{
 				removeComments:true,
 				removeEmptyElements:true,
-				/*removeTagWhitespace:true,
-				collapseWhitespace:true,*/
+				removeTagWhitespace:true,
+				collapseWhitespace:true,
 			},
 			chunks:['c'],
 			inlineSource: '.(js|css)$'			
 
 
-		}),
+		}),*/
 		new HtmlWebpackInlineSourcePlugin(),
 	]
 
