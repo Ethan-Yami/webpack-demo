@@ -3,7 +3,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const path = require('path');
 
 module.exports = {
-	mode:'development',
+	mode:"production",
 	entry: './src/index.js',
 	output:{
 	  	path:path.resolve(__dirname,"dist"),
@@ -12,7 +12,13 @@ module.exports = {
 	plugins:[
 		new HtmlWebpackPlugin({
 			title:"Login System",
-			filename:"main.html",
+			filename:"index.html",
+			template:"index.html"
+			
+		}),
+		new HtmlWebpackPlugin({
+			title:"Login System",
+			filename:"login.html",
 			template:"index.html"
 			
 		}),
@@ -45,7 +51,7 @@ module.exports = {
 	      },
 	       
       {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac|jpg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
