@@ -1,14 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-	<title><%=  htmlWebpackPlugin.options.title %></title>
-	
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <style type="text/css">
+    html,body{
+        height: 100%;
+    }
+    #app{
+        height: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-flex-flow: column;
+               flex-flow: column;
+    }
+    
+  
+   
+    </style>
 </head>
 <body>
-	
-	<hr>
-
-	<!--  This is a commont Here you can see me . -->
-
+    <div id="app"></div>
+    <script type="text/javascript" src="./script/api.js"></script>
 </body>
 </html>

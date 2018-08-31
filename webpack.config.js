@@ -1,110 +1,65 @@
-var path = require('path');
-var htmlWebpackPlugin = require('html-webpack-plugin');
-var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const path = require('path');
+
 module.exports = {
-	mode: 'development',
-	/*entry: {
-		main: './src/script/main.js',
-		a: './src/script/a.js',
-		b: './src/script/b.js',
-		c: './src/script/c.js'
-	},*/
-	entry:"./src/app.js",
-	output: {
-
-		path: __dirname +"/dist/",
-		filename: "js/[name]-[bundle].js",
-		/*publicPath:'https://upjg.org'*/
-	},
-	module:{
-		loaders:[
-			{
-				test: /\.js$/,
-				loader:'babel',
-				query:{
-					presets:['lastest']
-				}
-			}
-		]
-
+	mode:'development',
+	entry: './src/index.js',
+	output:{
+	  	path:path.resolve(__dirname,"dist"),
+	  	filename:"js/[name].js",
 	},
 	plugins:[
-		
-		new htmlWebpackPlugin({
-			filename:"index.html",
-			template:"index.html",
-			inject:'body',			
-			/*minify:{
-				removeComments:true,
-				removeEmptyElements:true,
-				removeTagWhitespace:true,
-				collapseWhitespace:true,
-			},			
-			title:'webpack is pretty good',
-			date:new Date(),
-			chunks:['main'],
-			inlineSource: '.(js|css)$'*/
-
+		new HtmlWebpackPlugin({
+			title:"Login System",
+			filename:"main.html",
+			template:"index.html"
+			
 		}),
-		/*new htmlWebpackPlugin({
-			filename:"login.html",
-			template:'login.html',
-			inject:'body',			
-			minify:{
-				removeComments:true,
-				removeEmptyElements:true,
-				removeTagWhitespace:true,
-				collapseWhitespace:true,
-			},
-			chunks:['main']
-		}),
-		new htmlWebpackPlugin({
-			filename:"a.html",
-			template:'a.html',
-			inject:'body',		
-			minify:{
-				removeComments:true,
-				removeEmptyElements:true,
-				removeTagWhitespace:true,
-				collapseWhitespace:true,
-			},
-			chunks:['a'],
-			inlineSource: '.(js|css)$'
-
-		}),
-
-		new htmlWebpackPlugin({
-			filename:"b.html",
-			template:'b.html',
-			inject:'body',
-			minify:{
-				removeComments:true,
-				removeEmptyElements:true,
-				removeTagWhitespace:true,
-				collapseWhitespace:true,
-			},
-			chunks:['b'],
-			inlineSource: '.(js|css)$'
-
-
-		}),
-
-		new htmlWebpackPlugin({
-			filename:"c.html",
-			template:'c.html',
-			inject:"body",
-			minify:{
-				removeComments:true,
-				removeEmptyElements:true,
-				removeTagWhitespace:true,
-				collapseWhitespace:true,
-			},
-			chunks:['c'],
-			inlineSource: '.(js|css)$'			
-
-
-		}),*/
-		new HtmlWebpackInlineSourcePlugin(),
-	]
-
-}
+		new VueLoaderPlugin()
+	],
+	module: {
+	    rules: [
+	      {
+	        test: /\.vue$/,
+	        loader: 'vue-loader',	      
+           
+	      },
+	      // this will apply to both plain `.js` files
+	      // AND `<script>` blocks in `.vue` files
+	      {
+	        test: /\.js$/,
+	        loader: 'babel-loader',	    
+            exclude: '/node_modules/'
+	      },
+	      // this will apply to both plain `.css` files
+	      // AND `<style>` blocks in `.vue` files
+	      {
+	        test: /\.css$/,
+	        use: [
+	          'vue-style-loader',
+	          'style-loader',
+	          'css-loader'
+	        ],
+	        exclude: '/node_modules/'
+	      },
+	       
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+         
+        }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+        
+        }
+      }
+	    ]
+  },
+};
